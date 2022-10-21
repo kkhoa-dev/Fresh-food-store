@@ -1,0 +1,189 @@
+﻿@model HomeViewModel;
+@using FFS.ViewModels.Catalog.Products;
+@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section slider{ <div class="first">
+        <div class="background-leaf"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="banner">
+                        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                @for (int index = 0; index < Model.Slides.Count; index++)
+                                {
+                                    var slide = Model.Slides[index];
+                                    <div class="carousel-item @(index==0?"active":"")">
+                                        <a href="@slide.Url"><img src="@slide.Image" class="d-block w-100" alt="@slide.Name"></a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="right">
+                        <img class="my-3" src="images/hinh-anh-trang-chu/logo-leaf.png" />
+                        <h5 localize-content>
+                            Sản phẩm có chất lượng tốt nhất
+                        </h5>
+                        <h1 localize-content>
+                            Cam kết vì sức khỏe cộng đồng
+                        </h1>
+                        <p localize-content>
+                            Thực phẩm sạch. Có lợi cho sức khỏe. Không chất cấm.
+                        </p>
+                        <a href="detail.html" class="btn btn-success">
+                            <i class="fa fa-cart-plus"></i>
+                            <localize>Mua ngay</localize>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>}
+
+<div class="row certificate">
+    <div class="col-2"></div>
+    <div class="col-2">
+        <div class="chungchi">
+            <i class="fa fa-truck"></i>
+            <localize>Giao hàng nhanh</localize>
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="chungchi">
+            <i class="fa fa-address-book-o"></i>
+            <localize>Chứng chỉ hữu cơ</localize>
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="chungchi">
+            <i class="fa fa-heart-o"></i>
+            <localize>Lợi cho sức khỏe</localize>
+        </div>
+    </div>
+    <div class="col-2">
+        <div class="chungchi">
+            <i class="fa fa-refresh"></i>
+            <localize>Xanh, Sạch</localize>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+<div class="product container">
+    <div class="the-title">
+        <h2>
+            <localize>Mặt hàng nổi bật</localize>
+        </h2>
+        <img class="img-fluid" src="images/hinh-anh-trang-chu/logo-leaf.png" />
+    </div>
+    <div class="product-item">
+        <ul>
+            @foreach (var item in Model.FeaturedProducts)
+            {
+                var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
+                <li class="item">
+                    <a href="@url" class="product-image">
+                        <img src="@(Configuration["BaseAddress"] + item.ThumbnailImage)">
+                    </a>
+                    <div class="info-box">
+                        <p class="product-name mb-1">
+                            <a href="detail.html">@item.Name</a>
+                        </p>
+                        <div class="price-box">
+                            <span class="old-price">
+                                @item.OriginalPrice.ToString()&nbsp;₫
+                            </span>
+                            <span class="price">
+                                @item.Price.ToString()&nbsp;₫
+                            </span>
+                            <span class="sale">-10%</span>
+                            <a href="@url" class="btn btn-success">
+                                <i class="fa fa-shopping-cart"></i>
+                                <localize> XEM NGAY</localize>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            }
+
+        </ul>
+    </div>
+</div>
+
+<div class="row preferential">
+    <div class="col-7">
+        <div class="pull-right">
+            <localize>Giảm 25% cho lần mua hàng đầu tiên!</localize>
+        </div>
+    </div>
+    <div class="col-5">
+        <a href="/" class="btn btn-secondary">
+            <i class="fa fa-shopping-cart"></i>
+            <localize>MUA NGAY</localize>
+        </a>
+    </div>
+    <div class="container">
+        <svg viewBox="0 0 700 10">
+            <path d="M350,10L340,0h20L350,10z"></path>
+        </svg>
+    </div>
+</div>
+<div class="for-registration">
+    <div class="text-center">
+        <a href="login.html"><localize>Đăng Ký Ngay Để Nhận Ưu Đãi.</localize></a>
+    </div>
+</div>
+
+<div class="last">
+    <div class="background-leaf"></div>
+    <div class="product container">
+        <div class="the-title">
+            <h2 localize-content>
+                Mặt hàng mới nhất
+            </h2>
+            <img class="img-fluid" src="images/hinh-anh-trang-chu/logo-leaf.png" />
+        </div>
+        <div class="product-item">
+            <ul>
+                @foreach (var item in Model.LatestProducts)
+                {
+                    var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
+                    <li class="item">
+                        <a href="@url" class="product-image">
+                            <img src="@(Configuration["BaseAddress"] + item.ThumbnailImage)">
+                        </a>
+                        <div class="info-box">
+                            <p class="product-name mb-1">
+                                <a href="detail.html"> @item.Name </a>
+                            </p>
+                            <div class="price-box">
+                                <span class="old-price">
+                                    @item.OriginalPrice&nbsp;₫
+                                </span>
+                                <span class="price">
+                                    @item.Price&nbsp;₫
+                                </span>
+                                <span class="sale">-10%</span>
+                                <a href="detail.html" class="btn btn-success">
+                                    <i class="fa fa-shopping-cart"></i>
+                                    <localize> XEM NGAY</localize>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "FreshFood Administrator";
+}
+
+<div class="breadcrumbs">
+    <div class="page-header float-right">
+        <div class="page-title">
+            <ol class="breadcrumb text-right">
+                <li class="active">Bảng điều khiển</li>
+            </ol>
+        </div>
+    </div>
+</div>
+<!-- Nội dung -->
+<div class="workplace">
+    <div class="row bg-white ml-2 mr-2">
+        <div class="col-3 custom-card">
+            <div class="tittle-left">
+                <div class="font-weight-bold">Đơn Hàng</div>
+                <small>Tổng theo tháng</small>
+            </div>
+            <div  id="div_Order" class="widget-numbers text-success">
+                1999
+                <span>+ 14</span>
+            </div>
+        </div>
+        <div class="col-3 custom-card">
+            <div class="tittle-left">
+                <div class="font-weight-bold">Kho</div>
+                <small>Tổng sản phẩm</small>
+            </div>
+            <div  id="div_TotalQuantity" class="widget-numbers text-warning">
+                1808
+                <span>+ 14</span>
+            </div>
+        </div>
+        <div class="col-3 custom-card">
+            <div class="tittle-left">
+                <div class="font-weight-bold">Đã Bán</div>
+                <small>Tổng sản phẩm</small>
+            </div>
+            <div  id="div_sold" class="widget-numbers text-primary">
+                1006
+                <span>+ 14</span>
+            </div>
+        </div>
+        <div class="col-3 custom-card">
+            <div class="tittle-left">
+                <div class="font-weight-bold">Khách Hàng</div>
+                <small>Tổng số lượng</small>
+            </div>
+            <div  id="div_TotalClien" class="widget-numbers text-danger">
+                512
+                <span>+ 14</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4 p-2">
+        <div class="col-6">
+            <table class="table bg-white">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4"><i class="fa fa-money mr-2"></i>Doanh Thu <small>(VNĐ)</small></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3">Tổng doanh thu</td>
+                        <td  id="td_TotalMoney" class="text-right"> 900.000.000&ensp;đ</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Doanh thu tháng trước</td>
+                        <td  id="td_TotalMoneyBeforeMonth" class="text-right"> 64,000&ensp;đ</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Doanh thu tháng hiện tại</td>
+                        <td  id="td_TotalMoneyCurrentMonth" class="text-right"> 52,000&ensp;đ</td>
+                    </tr>
+                    <tr>
+                        <td  id="td_TotalToday" colspan="3">Doanh thu hôm nay</td>
+                        <td  id="td_TotalMoneyCurrentDay" class="text-right"> 186.000&ensp;đ</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-6">
+            <table class="table bg-white">
+                <thead>
+                    <tr>
+                        <th scope="col" colspan="4"><i class="fa fa-clipboard mr-2"></i>Đơn Hàng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td colspan="3">Tổng đơn hàng</td>
+                        <td  id="td_TotalOrder" class="text-right">888</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Đơn hàng đã duyệt</td>
+                        <td  id="td_TotalOrderConfirm" class="text-right">78</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Đơn hàng chưa duyệt</td>
+                        <td  id="td_TotalOrderUnconfirm" class="text-right">32</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Đơn hàng đã hủy</td>
+                        <td id="td_TotalOrderCancel" class="text-right">2</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

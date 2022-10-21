@@ -1,0 +1,54 @@
+﻿@using FFS.ViewModels.System.Users
+@model LoginRequest
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FreshFood Administrator</title>
+    <link href="~/favicon.ico" rel="shortcut icon" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/login-style.css" rel="stylesheet" />
+    <link href="~/Content/sweetalert2.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+</head>
+<body>
+    <form asp-action="Index" asp-controller="Login" method="post" id="form1">
+
+        <div class="limiter">
+            <div class="container-login100">
+                <div class="wrap-login100">
+                    <div class="login100-form validate-form p-l-55 p-r-55 p-t-178 p-b-40">
+                        <span class="login100-form-title">
+                            FreshFood Administrator
+                        </span>
+
+                        <div class="wrap-input100 validate-input m-b-16">
+                            <input id="input_Username" class="input100" asp-for="UserName" type="text" placeholder="Tài Khoản">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input">
+                            <input id="input_Password" class="input100" asp-for="Password" type="password" placeholder="Mật Khẩu">
+                            <span class="focus-input100"></span>
+                        </div>
+
+                        <div class="text-right p-t-13 p-b-23">
+                            <div class="form-group form-check">
+                                <input type="checkbox" asp-for="RememberMe" class="form-check-input">
+                                <label class="form-check-label">Nhớ mật khẩu</label>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary" type="submit">Đăng nhập</button>
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

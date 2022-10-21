@@ -1,0 +1,90 @@
+﻿@model FFS.ViewModels.System.Users.RegisterRequest
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<ul class="breadcrumb">
+    <li><a href="/">Trang chủ</a> <span class="divider">/</span></li>
+    <li class="active">Đăng ký</li>
+</ul>
+<div class="container">
+    <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal">
+        <div asp-validation-summary="All" class="text-error" style="color:red">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+        </div>
+        <div class="col-8 content-login-register">
+            <div id="p2" class="form-group input-login-register">
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">
+                            Họ
+                        </label>
+                        <input asp-for="FirstName" id="input_FirtName" class="form-control" type="text" placeholder="Nhập họ">
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">
+                            Tên
+                        </label>
+                        <input id="input_LastName" class="form-control" asp-for="LastName" type="text" placeholder="Nhập tên">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">
+                            Email
+                        </label>
+                        <input id="input_RegisterEmail" asp-for="Email" class="form-control" type="text" placeholder="Nhập email">
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">
+                            Tài khoản đăng nhập
+                        </label>
+                        <input id="input_RegisterEmail" asp-for="UserName" class="form-control" type="text" placeholder="Nhập tài khoản đăng nhập">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">
+                            Mật khẩu
+                        </label>
+                        <input id="input_RegisterPassword" class="form-control" asp-for="Password" type="password" placeholder="Nhập mật khẩu">
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">
+                            Nhập lại mật khẩu
+                        </label>
+                        <input id="input_RegisterRePassword" class="form-control" asp-for="ConfirmPassword" type="password" placeholder="Nhập lại mật khẩu">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <label class="control-label">
+                            SĐT
+                        </label>
+                        <input id="input_RegisterMobi" asp-for="PhoneNumber" class="form-control" type="text" placeholder="Nhập SĐT">
+                    </div>
+                    <div class="col-6">
+                        <label class="control-label">
+                            Ngày sinh
+                        </label>
+                        <input asp-for="Dob" id="input_RegisterMobi" class="form-control" type="text" placeholder="Nhập SĐT">
+                    </div>
+                </div>
+
+                <small style="margin-top: 15px; visibility: visible">
+                    Khi bạn nhấn Đăng ký, bạn đã đồng ý thực hiện mọi giao dịch mua bán theo
+                    <a href="#" style="color: #0082ff;">điều kiện sử dụng và chính sách của FreshFood.</a>
+                </small>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <input type="hidden" name="email_create" value="1">
+                    <input type="hidden" name="is_new_customer" value="1">
+                    <input class="btn btn-warning btn-block" type="submit" value="Register" />
+                </div>
+            </div>
+        </div>
+        <p><sup>*</sup>Là bắt buộc</p>
+
+    </form>
+</div class="container">

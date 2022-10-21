@@ -1,0 +1,42 @@
+﻿@model List<FFS.ViewModels.Catalog.Categories.CategoryVm>
+@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+}
+<li class="nav-item dropdown">
+    <div class="menu-product">
+        <a class="nav-link dropdown-toggle" asp-route-culture="@culture" localize-content>
+            Danh mục
+        </a>
+        <ul class='level0'>
+            @{
+                var parents = Model.Where(x => x.ParentId == null);
+            }
+            @for (int index = 0; index < parents.Count(); index++)
+            {
+                var parent = parents.ElementAt(index);
+                var children = Model.Where(x => x.ParentId == parent.Id);
+                if (children.Any())
+                {
+                    <li class="child">
+                        <a  href="/@culture/@_loc["categoryUrl"]/@parent.Id">@parent.Name<i class="fa fa-angle-right"></i></a>
+
+                        <ul class='level1 hidden-xs'>
+                            @foreach (var item in children)
+                            {
+                                <li><a href="/@culture/@_loc["categoryUrl"]/@item.Id">@item.Name</a></li>
+                            }
+                        </ul>
+                    </li>
+                }
+                else
+                {
+                    <li class="child">
+                        <a href="/@culture/@_loc["categoryUrl"]/@parent.Id">@parent.Name</a>
+                    </li>
+                }
+
+            }
+        </ul>
+    </div>
+</li>

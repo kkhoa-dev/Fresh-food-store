@@ -1,0 +1,65 @@
+﻿@model ProductCategoryViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = Model.Category.Name + (Model.Products.PageIndex == 1 ? "" : " - " + _loc["Page"] + " " + Model.Products.PageIndex);
+    var culture = CultureInfo.CurrentCulture;
+}
+@inject Microsoft.Extensions.Configuration.IConfiguration Configuration;
+@inject LazZiya.ExpressLocalization.ISharedCultureLocalizer _loc;
+
+<div class="list-product container">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Trang chủ</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="#">@Model.Category.Name</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Sản phẩm</li>
+        </ol>
+    </nav>
+    <div class="the-title">
+        <h2>
+            Sản phẩm
+        </h2>
+
+        <img class="img-fluid" src="~/images/hinh-anh-trang-chu/logo-leaf.png" />
+    </div>
+    <div class="product-item">
+        <ul>
+            @for (int i = 0; i < Model.Products.Items.Count; i++)
+            {
+                var item = Model.Products.Items[i];
+                var url = $"/{culture}/{_loc["productUrl"]}/{item.Id}";
+                <li class="item">
+                    <a href='@url' class="product-image">
+                        <img src="@(Configuration["BaseAddress"] + @item.ThumbnailImage) ">
+                    </a>
+                    <div class="info-box">
+                        <p class="product-name mb-1">
+                            <a href=''>
+                                @item.Name
+                            </a>
+                        </p>
+                        <div class="price-box">
+                            <strike class="old-price">
+                                @item.OriginalPrice&nbsp;₫
+                            </strike>
+                            <span class="price">
+                                @item.Price&nbsp;₫
+                            </span>
+                            <a href='#' class="btn btn-success">
+                                <i class="fa fa-shopping-cart"></i>
+                                XEM NGAY
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            }
+
+
+        </ul>
+    </div>
+    @await Component.InvokeAsync("Pager", Model.Products)
+</div>
